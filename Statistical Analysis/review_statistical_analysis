@@ -1,0 +1,22 @@
+import pandas as pd 
+import numpy as np 
+import seaborn as sns 
+import warnings 
+import matplotlib.pyplot as plt 
+warnings.filterwarnings('ignore')
+
+review= pd.read_csv("olist_order_reviews_dataset.csv")
+
+review['review_comment_title'].fillna("No Title", inplace=True)
+review['review_comment_message'].fillna("No Message", inplace=True)
+
+rating_counts = review['review_score'].value_counts().sort_index()
+
+# bar chart
+plt.figure(figsize=(8, 6))
+sns.barplot(x=rating_counts.index, y=rating_counts.values, palette="pastel")
+plt.title('Review Ratings (1 to 5) in Olist')
+plt.xlabel('Review Score')
+plt.ylabel('Review Total Count')
+
+plt.show()
