@@ -21,4 +21,10 @@ print("Null Value Percentage: ")
 
 payment['payment_value'] = payment['payment_value'].round(2)
 
-print(payment.head())
+payment = payment[payment['payment_type'] != 'not_defined']
+
+payment.reset_index(drop=True, inplace=True)
+
+print ("Unique: ")
+for p in payment['payment_type'].unique():
+   print(p)
